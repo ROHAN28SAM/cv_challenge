@@ -4,13 +4,11 @@ from nltk.corpus import stopwords  ## Import stopwords from nltk.corpus to ignor
 stop = stopwords.words('english')
 from nltk.corpus import wordnet   ## Import wordnet from the NLTK
 
-## define a function which accept file
-
-# def readtxt(filename):
 def main():
     f = open('text_cv_v.txt','r')
     contents = f.read()  ## save all the text in a variable 
 
+    
     ## to fetch the name from cv/resume
     Sentences = nltk.sent_tokenize(contents)  ## to split contents in sentences in list format 
     Tokens = []
@@ -34,11 +32,14 @@ def main():
     name1 = Names[0]
     print (f"The name of applicant is:- {name1}")
   
+
 # %% to fetch the email from cv/resume
     #     
     email1 = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", contents)  ## re is used to find same pattern
     email = email1[0]  ## as email is stored in list form, to access only email id
     print (f"The E-mail of {name1} is:- {email}")
+    
+    
 # %% to fetch the address from cv/resume
     
     f.seek(0)  ## return cursor to the beginning of the file
@@ -55,6 +56,7 @@ def main():
         if "Address" in text_list[i]:  ## to find Address word in list
             print(f"The address of {name1} is:- {text_list[i]}")
 
+            
 # %% to fetch the phone/ mobile number from cv/resume
 
     mob_number=re.compile(r'\d\d\d\d\d\d\d\d\d\d')  ## Compile a regular expression pattern
@@ -63,6 +65,5 @@ def main():
 
     f.close()
 
-# readtxt('text_cv_y.txt')
 if __name__ == '__main__':
     main()
